@@ -36,9 +36,6 @@ echo '     Creating filesystems && mount now...'
 echo '############################################'
 echo
 
-echo
-echo 'Which filesystem will be in ROOT? choose one in a list below:
-###########################################
 mkfs.ext2 /dev/sda1
 mkfs.ext3 /dev/sda3
 mount /dev/sda3 /mnt/gentoo
@@ -47,4 +44,5 @@ mkswap /dev/sda2
 swapon /dev/sda2
 echo 'done.'
 sleep 1
+
 
