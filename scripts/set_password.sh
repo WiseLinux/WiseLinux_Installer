@@ -14,7 +14,7 @@ echo '           Setting root password'
 echo '############################################'
 echo
 
-chroot /mnt/gentoo echo "foobar" | passwd --stdin root
+chroot /mnt/gentoo echo root:foobar | chpasswd
 
 echo 'done.'
 sleep 1
