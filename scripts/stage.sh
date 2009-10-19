@@ -20,7 +20,6 @@ cp /root/stages/stage3-i686-20091013.tar.bz2 ./
 echo 'done.'
 sleep 1
 		
-			### Extracting the stage ###
 echo
 echo '############################################'
 echo '          Extracting the stage3 file        '
@@ -33,3 +32,18 @@ mkdir /mnt/gentoo/usr/portage
 
 echo 'done.'
 sleep 1
+
+echo
+echo '############################################'
+echo '   Mounting portage, bind, and proc...      '
+echo '############################################'
+echo
+mount -t proc proc /mnt/gentoo/proc
+mount -o bind /dev /mnt/gentoo/dev
+
+#Mounting the shared portage
+mount -t nfs 10.10.10.1:/usr/portage /mnt/gentoo/usr/portage
+
+echo 'done.'
+sleep 1
+
