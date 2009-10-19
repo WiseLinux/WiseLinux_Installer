@@ -15,7 +15,7 @@ echo '      copying the stage3 file'
 echo '############################################'
 echo
 cd /mnt/gentoo
-cp /root/stage3-i686-20091013.tar.bz2 ./ 
+cp /root/stages/stage3-i686-20091013.tar.bz2 ./ 
 
 echo 'done.'
 sleep 1

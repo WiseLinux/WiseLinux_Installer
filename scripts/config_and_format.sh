@@ -25,7 +25,7 @@ echo '############################################'
 echo '             Creating partitions...'
 echo '############################################'
 echo
-sfdisk /dev/sda < /root/sda.part
+sfdisk /dev/sda < /root/includes/sda.part
 echo 'done.'
 sleep 1
 
