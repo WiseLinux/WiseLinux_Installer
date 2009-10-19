@@ -1,3 +1,13 @@
 This set of scripts are beased on a master script I found folating on the internet by Valetov "Heretiqu3" Konstantin.
 
 I am using his script as a starting point to develop a new set of scripts for automatic install of Gentoo onto UVa@Wise's cluster.
+
+-includes
+  Holds any config file that you want to be used across the cluster
+
+-scripts
+  Holds all the scripts that are used to install Gentoo
+
+-stages
+  Holds stage3 files that have been downloaded from the gentoo mirror of your choosing
+
