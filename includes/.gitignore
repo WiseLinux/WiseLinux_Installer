@@ -1,0 +1,4 @@
+fstab
+kernel_config
+make.conf
+*.part
