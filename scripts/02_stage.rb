@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-'require 'fileutils'
+require 'fileutils'
 # Jacob Atkins
 # Univeristy of Virginia's College at Wise
 #
