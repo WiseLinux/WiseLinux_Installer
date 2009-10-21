@@ -29,7 +29,7 @@ puts 'Kernel script is in place'
 
 puts 'Building the kernel'
 
-FileUtils.chmod 0755 '/mnt/gentoo/kernel.sh'
+FileUtils.chmod 0755, '/mnt/gentoo/kernel.sh'
 
 `chroot /mnt/gentoo ./kernel.sh`
 
