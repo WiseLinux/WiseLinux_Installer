@@ -13,7 +13,7 @@ puts 'vanilla-sources are in place'
 
 puts 'Creating kernel compile script'
 
-FileUtils.cp 'includes/kernel-config', '/mnt/gentoo/usr/src/linux/.config'
+FileUtils.cp 'includes/kernel_config', '/mnt/gentoo/usr/src/linux/.config'
 
 file = File.new('/mnt/gentoo/kernel.sh', 'w')
 
