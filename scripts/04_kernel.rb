@@ -11,6 +11,12 @@ puts 'Downloading vanilla-sources "Linux Kernel" version 2.6.30.5'
 
 puts 'vanilla-sources are in place'
 
+puts 'Installing grub boot loader'
+
+`chroot /mnt/gentoo emerge grub`
+
+puts 'grub is installed'
+
 puts 'Creating kernel compile script'
 
 FileUtils.cp 'includes/kernel_config', '/mnt/gentoo/usr/src/linux/.config'
