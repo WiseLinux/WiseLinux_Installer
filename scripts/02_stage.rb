@@ -9,7 +9,7 @@ puts 'Copying the stage3 file over'
 
 Dir.chdir('/mnt/gentoo')
 
-FileUtils.cp /root/stages/stage3-i686-20091013.tar.bz2 ./
+FileUtils.cp '/root/stages/stage3-i686-20091013.tar.bz2', './'
 
 puts 'Done copying'
 
