@@ -17,6 +17,12 @@ FileUtils.cp 'includes/make.conf', '/mnt/gentoo/etc/make.conf'
 
 puts 'make.conf is in place'
 
+puts 'Copying /etc/resolv.conf to /mnt/gentoo/etc/resolv.conf'
+
+FileUtils.cp '/etc/resolv.conf', '/mnt/gentoo/etc/resolv.conf'
+
+puts 'resolv.conf is in place'
+
 puts 'adding eth0 to configuration'
 
 file = File.open('/mnt/gentoo/etc/conf.d/net', 'a')
