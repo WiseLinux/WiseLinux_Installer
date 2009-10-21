@@ -22,7 +22,7 @@ echo '###########################################'
 echo
 			### Making Kernel script ###
 
-cp /root/config /mnt/gentoo/usr/src/linux/.config
+cp /root/includes/config /mnt/gentoo/usr/src/linux/.config
 echo '#!/bin/bash' > /mnt/gentoo/kernel.sh
 echo 'cd /usr/src/linux' >> /mnt/gentoo/kernel.sh
 echo 'make -j3 && make modules_install' >> /mnt/gentoo/kernel.sh
