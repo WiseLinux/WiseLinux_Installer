@@ -35,6 +35,10 @@ puts 'Adding eth0 to boot tasks'
 
 `chroot /mnt/gentoo /sbin/rc-update add net.eth0 default`
 
+puts 'Adding sshd to boot tasks'
+
+`chroot /mnt/gentoo /sbin/rc-update add sshd default`
+
 puts 'Setting root password'
 
 `chroot /mnt/gentoo echo root:foobar | chpasswd`
