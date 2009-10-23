@@ -23,9 +23,9 @@ puts 'Done building grub.conf'
 
 puts 'Installing grub to the MBR'
 
-`chroot /mnt/gentoo grep -v rootfs /proc/mounts > /etc/mtab`
+`chroot /mnt/gentoo 'grep -v rootfs /proc/mounts > /etc/mtab'`
 
-`chroot /mnt/gentoo grub-install --no-floppy /dev/sda`
+`chroot /mnt/gentoo 'grub-install --no-floppy /dev/sda'`
 
 puts 'Grub is installed'
 

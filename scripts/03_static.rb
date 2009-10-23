@@ -41,7 +41,7 @@ puts 'Adding sshd to boot tasks'
 
 puts 'Setting root password'
 
-`chroot /mnt/gentoo echo root:foobar | chpasswd`
+`chroot /mnt/gentoo 'echo root:foobar | chpasswd'`
 
 puts 'Root password set'
 
