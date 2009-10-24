@@ -46,7 +46,7 @@ puts 'Setting root password'
 root = File.new('/mnt/gentoo/root.sh', 'r')
 
 root.puts('#!/bin/bash')
-root.puts(''
+root.puts('')
 root.puts('echo root:foobar | chpasswd')
 
 root.close
