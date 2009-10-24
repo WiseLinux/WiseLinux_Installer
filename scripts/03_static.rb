@@ -41,7 +41,21 @@ puts 'Adding sshd to boot tasks'
 
 puts 'Setting root password'
 
-`chroot /mnt/gentoo 'echo root:foobar | chpasswd'`
+#Have to generate a shell script because chroot is a bitch
+
+root = File.new('/mnt/gentoo/root.sh', 'r')
+
+root.puts('#!/bin/bash')
+root.puts(''
+root.puts('echo root:foobar | chpasswd')
+
+root.close
+
+FileUtils.chmod 0755, '/mnt/gentoo/root.sh'
+
+`chroot /mnt/gentoo ./root.sh`
+
+FileUtils.rm_rf '/mnt/gentoo/root.sh'
 
 puts 'Root password set'
 
