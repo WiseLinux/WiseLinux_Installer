@@ -43,7 +43,7 @@ puts 'Setting root password'
 
 #Have to generate a shell script because chroot is a bitch
 
-root = File.new('/mnt/gentoo/root.sh', 'r')
+root = File.new('/mnt/gentoo/root.sh', 'w')
 
 root.puts('#!/bin/bash')
 root.puts('')
