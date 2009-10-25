@@ -59,5 +59,11 @@ FileUtils.rm_rf '/mnt/gentoo/root.sh'
 
 puts 'Root password set'
 
+puts 'Changing default profile to 10.0'
+
+`chroot /mnt/gentoo eselect profile set 1`
+
+puts 'Profile set'
+
 puts 'Finished'
 
