@@ -17,6 +17,12 @@ puts 'Updaing the world'
 
 puts 'Done updaing'
 
+puts 'Installing OpenMPI, TORQUE, vim, and ruby'
+
+`chroot /mnt/gentoo emerge openmpi torque vim ruby`
+
+puts 'Finished installing clustering tools'
+
 puts 'Removing stage3 file'
 
 FileUtils.rm_f '/mnt/gentoo/stage*'
