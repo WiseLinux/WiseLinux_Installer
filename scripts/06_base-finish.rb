@@ -19,7 +19,7 @@ puts 'Done updaing'
 
 puts 'Removing stage3 file'
 
-FileUtils.rm_f /mnt/gentoo/stage*
+FileUtils.rm_f '/mnt/gentoo/stage*'
 
 puts 'Unmounting file systems'
 
