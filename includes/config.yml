@@ -1,0 +1,35 @@
+setup:
+  dns:
+    domain: "example.com"
+    nameserver1: 0.0.0.0
+    nameserver2: 0.0.0.0
+  harddrive:
+    harddrive: sda
+    hadrdrive_map_file: sda.part
+    boot_partition: sda1
+    swap_partition: sda2
+    root_partition: sda3
+    boot_filesystem: ext2
+    root_filesystem: ext3
+
+stage:
+  stage3_tarbal: stage3-i686-20091013.tar.bz2
+  portage_server: 0.0.0.0
+  portage_share_name: /usr/portage
+  
+static:
+  fstab_file: fstab
+  make.conf_file: make.conf
+  network_interface: eth0
+  root_password: foobar
+  
+kernel:
+  version: 2.6.30.5
+  config_file: kernel_config
+  makeopts: 3
+  
+base:
+  logger: syslog_ng
+  cron: vixie_cron
+  update: true
+  
