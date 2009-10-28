@@ -7,9 +7,16 @@ require 'fileutils'
 
 puts 'Installing the required base packages'
 
-`chroot /mnt/gentoo emerge syslog-ng vixie-cron nfs-utils portmap dhcp`
+`chroot /mnt/gentoo emerge syslog-ng vixie-cron nfs-utils portmap dhcp ntp`
 
 puts 'Done installing the tools'
+
+puts 'Adding tools to rc'
+
+`chroot /mnt/gentoo rc-update add syslog-ng default`
+`chroot /mnt/gentoo rc-update add vixie-cron default`
+`chroot /mnt/gentoo rc-update add ntp-client default`
+
 
 puts 'Updaing the world'
 
@@ -18,7 +25,4 @@ puts 'Updaing the world'
 puts 'Done updaing'
 
 puts 'Finished'
-
-
-
 
