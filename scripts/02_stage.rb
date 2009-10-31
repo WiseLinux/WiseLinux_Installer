@@ -1,15 +1,19 @@
 #!/usr/bin/ruby
 require 'fileutils'
+require 'yaml'
+
 # Jacob Atkins
 # Univeristy of Virginia's College at Wise
 #
 # jta4j@mcs.uvawise.edu
 
+CONFIG = YAML::load(File.read('/root/includes/config.yml'))
+
 puts 'Copying the stage3 file over'
 
 Dir.chdir('/mnt/gentoo')
 
-FileUtils.cp '/root/stages/stage3-i686-20091013.tar.bz2', './'
+FileUtils.cp "/root/stages/#{CONFIG['stage']['stage3_tarbal']}", './'
 
 puts 'Done copying'
 
@@ -24,7 +28,7 @@ puts 'And mounting portage'
 
 Dir.mkdir('/mnt/gentoo/usr/portage')
 
-`mount -t nfs 10.10.10.1:/usr/portage /mnt/gentoo/usr/portage`
+`mount -t nfs #{CONFIG['stage']['portage_server']}:#{CONFIG['stage']['portage_share_name']} /mnt/gentoo/usr/portage`
 
 puts 'Finished mounting portage'
 
