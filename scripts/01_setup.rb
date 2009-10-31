@@ -7,7 +7,7 @@ require "yaml"
 #
 # jta4j@mcs.uvawise.edu
 
-CONFIG = YAML::load(File.read('../includes/config.yml'))
+CONFIG = YAML::load(File.read('/root/includes/config.yml'))
 
 puts 'Configuring interface eth0'
 
@@ -23,32 +23,32 @@ puts 'Finished configuring eth0'
 
 puts "Making partitions on #{CONFIG['setup']['harddrive']['harddrive']}"
 
-`sfdisk -q /dev/#{CONFIG['setup']['harddrive']['harddrive']} < ../includes/#{CONFIG['setup']['harddrive']['harddrive_map_file']}"`
+`sfdisk -q /dev/#{CONFIG['setup']['harddrive']['harddrive']} < /root/includes/#{CONFIG['setup']['harddrive']['harddrive_map_file']}`
 
 puts 'Finished making partitions'
 
 puts 'Formating the newly created partitions'
-puts '/dev/sda1 will be ext2'
-puts '/dev/sda3 will be ext3'
+puts "/dev/#{CONFIG['setup']['harddrive']['boot_partition']} will be #{CONFIG['setup']['harddrive']['boot_filesystem']}"
+puts "/dev/#{CONFIG['setup']['harddrive']['root_partition']} will be #{CONFIG['setup']['harddrive']['root_filesystem']}"
 
-`mkfs.ext2 /dev/sda1`
-`mkfs.ext3 /dev/sda3`
+`mkfs.#{CONFIG['setup']['harddrive']['boot_filesystem']} /dev/#{CONFIG['setup']['harddrive']['boot_partition']}`
+`mkfs.#{CONFIG['setup']['harddrive']['root_filesystem']} /dev/#{CONFIG['setup']['harddrive']['root_partition']}`
 
 puts 'Finished formating'
 
-puts 'Mounting /dev/sda3 to /mnt/gentoo'
-puts 'And mounting /dev/sda1 to /mnt/gentoo/boot'
+puts "Mounting /dev/#{CONFIG['setup']['harddrive']['root_partition']} to /mnt/gentoo"
+puts "And mounting /dev/#{CONFIG['setup']['harddrive']['boot_partition']} to /mnt/gentoo/boot"
 
-`mount /dev/sda3 /mnt/gentoo`
+`mount /dev/#{CONFIG['setup']['harddrive']['root_partition']} /mnt/gentoo`
 Dir.mkdir('/mnt/gentoo/boot')
-`mount /dev/sda1 /mnt/gentoo/boot`
+`mount /dev/#{CONFIG['setup']['harddrive']['boot_partition']} /mnt/gentoo/boot`
 
 puts 'Finished mounting'
 
-puts 'Creating and enabling swap on /dev/sda2'
+puts "Creating and enabling swap on /dev/#{CONFIG['setup']['harddrive']['swap_partition']}"
 
-`mkswap /dev/sda2`
-`swapon /dev/sda2`
+`mkswap /dev/#{CONFIG['setup']['harddrive']['swap_partition']}`
+`swapon /dev/#{CONFIG['setup']['harddrive']['swap_partition']}`
 
 puts 'Finished'
 
