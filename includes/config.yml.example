@@ -5,7 +5,7 @@ setup:
     nameserver2: 0.0.0.0
   harddrive:
     harddrive: sda
-    hadrdrive_map_file: sda.part
+    harddrive_map_file: sda.part
     boot_partition: sda1
     swap_partition: sda2
     root_partition: sda3
