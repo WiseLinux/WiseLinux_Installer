@@ -33,3 +33,6 @@ base:
   cron: vixie_cron
   update: true
   
+cluster:
+  torque_server: foo
+
