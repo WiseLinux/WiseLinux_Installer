@@ -1,19 +1,23 @@
 #!/usr/bin/ruby
-require 'fileutils'
 # Jacob Atkins
 # Univeristy of Virginia's College at Wise
 #
 # jta4j@mcs.uvawise.edu
 
-puts 'Copying over the fstab to /mnt/gentoo/etc/fstab'
+require 'fileutils'
+require 'yaml'
 
-FileUtils.cp 'includes/fstab', '/mnt/gentoo/etc/fstab'
+CONFIG = YAML::load(File.read('/root/includes/config.yml'))
+
+puts 'Copying over the  to /mnt/gentoo/etc/fstab'
+
+FileUtils.cp "includes/#{CONFIG['static']['fstab_file']}", '/mnt/gentoo/etc/fstab'
 
 puts 'fstab is in place'
 
 puts 'Copying over make.conf to /mnt/gentoo/etc/make.conf'
 
-FileUtils.cp 'includes/make.conf', '/mnt/gentoo/etc/make.conf'
+FileUtils.cp "includes/#{CONFIG['static']['make.conf_file']}", '/mnt/gentoo/etc/make.conf'
 
 puts 'make.conf is in place'
 
@@ -47,7 +51,7 @@ root = File.new('/mnt/gentoo/root.sh', 'w')
 
 root.puts('#!/bin/bash')
 root.puts('')
-root.puts('echo root:foobar | chpasswd')
+root.puts("echo root:#{CONFIG['static']['root_password']} | chpasswd")
 
 root.close
 

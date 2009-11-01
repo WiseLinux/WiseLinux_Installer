@@ -1,9 +1,13 @@
 #!/usr/bin/ruby
-require 'fileutils'
 # Jacob Atkins
 # Univeristy of Virginia's College at Wise
 #
 # jta4j@mcs.uvawise.edu
+
+require 'fileutils'
+require 'yaml'
+
+CONFIG = YAML::load(File.read('/root/includes/config.yml'))
 
 puts 'Installing OpenMPI, TORQUE, vim, and ruby'
 
@@ -18,7 +22,7 @@ puts 'Configuring TORQUE'
 
 pbs_config = File.open('/var/spool/torque/mom_priv/config', 'w')
 
-pbs_config.puts("$pbsserver nibbler")
+pbs_config.puts("$pbsserver #{CONFIG['cluster']['torque_server']}")
 pbs_config.puts("$logevent 255")
 
 pbs_config.close

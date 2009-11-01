@@ -1,11 +1,11 @@
 #!/usr/bin/ruby
-require 'fileutils'
-require 'yaml'
-
 # Jacob Atkins
 # Univeristy of Virginia's College at Wise
 #
 # jta4j@mcs.uvawise.edu
+
+require 'fileutils'
+require 'yaml'
 
 CONFIG = YAML::load(File.read('/root/includes/config.yml'))
 

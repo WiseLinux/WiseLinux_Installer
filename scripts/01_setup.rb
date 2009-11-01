@@ -1,13 +1,13 @@
 #!/usr/bin/ruby
-require "yaml"
-
 # This script will setup the network and partion/format the harddrive
 # Jacob Atkins
 # Univerisity of Virginia's College at Wise
 #
 # jta4j@mcs.uvawise.edu
 
-CONFIG = YAML::load(File.read('/root/includes/config.yml'))
+require 'yaml'
+
+CONFIG = YAML::load(File.read('includes/config.yml'))
 
 puts 'Configuring interface eth0'
 
@@ -23,7 +23,7 @@ puts 'Finished configuring eth0'
 
 puts "Making partitions on #{CONFIG['setup']['harddrive']['harddrive']}"
 
-`sfdisk -q /dev/#{CONFIG['setup']['harddrive']['harddrive']} < /root/includes/#{CONFIG['setup']['harddrive']['harddrive_map_file']}`
+`sfdisk -q /dev/#{CONFIG['setup']['harddrive']['harddrive']} < includes/#{CONFIG['setup']['harddrive']['harddrive_map_file']}`
 
 puts 'Finished making partitions'
 

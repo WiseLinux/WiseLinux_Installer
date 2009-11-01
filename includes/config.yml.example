@@ -20,17 +20,17 @@ stage:
 static:
   fstab_file: fstab
   make.conf_file: make.conf
-  network_interface: eth0
   root_password: foobar
   
 kernel:
-  version: 2.6.30.5
-  config_file: kernel_config
-  makeopts: 3
+  build: true #If you want to copy a pre-build kernel set to false other wise set to true and fill in version, config_file, and makeopts
+  version:
+  config_file:
+  makeopts:
+  kernel_image:
   
 base:
-  logger: syslog_ng
-  cron: vixie_cron
+  ntp_server: 0.0.0.0
   update: true
   
 cluster:

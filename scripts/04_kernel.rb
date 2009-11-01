@@ -1,47 +1,59 @@
 #!/usr/bin/ruby
-require 'fileutils'
 # Jacob Atkins
 # Univeristy of Virginia's College at Wise
 #
 # jta4j@mcs.uvawise.edu
 
-puts 'Downloading vanilla-sources "Linux Kernel" version 2.6.30.5'
+require 'fileutils'
+require 'yaml'
 
-`chroot /mnt/gentoo emerge =sys-kernel/vanilla-sources-2.6.30.5`
+CONFIG = YAML::load(File.read('/root/includes/config.yml'))
 
-puts 'vanilla-sources are in place'
+if CONFIG['kernel']['build'] == true
+  
+  puts "Downloading vanilla-sources \"Linux Kernel\" version #{CONFIG['kernel']['version']}"
+
+  `chroot /mnt/gentoo emerge =sys-kernel/vanilla-sources-#{CONFIG['kernel']['version']}`
+
+  puts 'vanilla-sources are in place'
+
+  puts 'Creating kernel compile script'
+
+  FileUtils.cp "includes/#{CONFIG['kernel']['config_file']}", '/mnt/gentoo/usr/src/linux/.config'
+
+  file = File.new('/mnt/gentoo/kernel.sh', 'w')
+
+  file.puts('#!/bin/bash')
+  file.puts('cd /usr/src/linux')
+  file.puts("make -j#{CONFIG['kernel']['makeopts']} && make modules_install")
+  file.puts("cp /usr/src/linux/arch/x86/boot/bzImage /boot/kernel-#{CONFIG['kernel']['version']}")
+  file.close
+
+  puts 'Kernel script is in place'
+
+  puts 'Building the kernel'
+
+  FileUtils.chmod 0755, '/mnt/gentoo/kernel.sh'
+
+  `chroot /mnt/gentoo ./kernel.sh`
+
+  FileUtils.rm_rf '/mnt/gentoo/kernel.sh'
+
+  puts 'Kernel built'
+  
+else
+  puts "Copying kernel image #{CONFIG['kernel']['kernel_image']}"
+  
+  FileUtils.cp "kernels/#{CONFIG['kernel']['kernel_image']}", "/boot/#{CONFIG['kernel']['kernel_image']}"
+  
+  puts "Kernel is in place"
+end
 
 puts 'Installing grub boot loader'
 
 `chroot /mnt/gentoo emerge grub`
 
 puts 'grub is installed'
-
-puts 'Creating kernel compile script'
-
-FileUtils.cp 'includes/kernel_config', '/mnt/gentoo/usr/src/linux/.config'
-
-file = File.new('/mnt/gentoo/kernel.sh', 'w')
-
-file.puts('#!/bin/bash')
-file.puts('cd /usr/src/linux')
-file.puts('make -j3 && make modules_install')
-file.puts('cp /usr/src/linux/arch/x86/boot/bzImage /boot/kernel-2.6.30.5')
-file.puts('cp /usr/src/linux/System.map /boot')
-file.puts('cp /usr/src/linux/.config /boot/config-kernel-2.6.30.5')
-file.close
-
-puts 'Kernel script is in place'
-
-puts 'Building the kernel'
-
-FileUtils.chmod 0755, '/mnt/gentoo/kernel.sh'
-
-`chroot /mnt/gentoo ./kernel.sh`
-
-FileUtils.rm_rf '/mnt/gentoo/kernel.sh'
-
-puts 'Kernel built'
 
 puts 'Finished'
 
