@@ -6,4 +6,5 @@
 ./scripts/04_kernel.rb 
 ./scripts/05_grub.rb
 ./scripts/06_base-finish.rb
-
+./scripts/07_cluster.rb
+./scripts/08_clean.rb
