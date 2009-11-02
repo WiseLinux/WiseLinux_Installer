@@ -43,8 +43,9 @@ if CONFIG['kernel']['build'] == true
   
 else
   puts "Copying kernel image #{CONFIG['kernel']['kernel_image']}"
-  
-  FileUtils.cp "kernels/#{CONFIG['kernel']['kernel_image']}", "/boot/#{CONFIG['kernel']['kernel_image']}"
+
+  `chroot /mnt/gentoo emerge =sys-kernel/vanilla-sources-#{CONFIG['kernel']['version']}`
+  FileUtils.cp "kernels/#{CONFIG['kernel']['kernel_image']}", "/mnt/gentoo/boot/#{CONFIG['kernel']['kernel_image']}"
   
   puts "Kernel is in place"
 end
