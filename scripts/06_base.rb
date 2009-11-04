@@ -11,7 +11,7 @@ CONFIG = YAML::load(File.read('/root/includes/config.yml'))
 
 puts 'Installing the required base packages'
 
-`chroot /mnt/gentoo emerge vixie-cron nfs-utils portmap dhcp ntp`
+`chroot /mnt/gentoo emerge syslog-ng vixie-cron nfs-utils portmap dhcp ntp`
 
 puts 'Done installing the tools'
 
