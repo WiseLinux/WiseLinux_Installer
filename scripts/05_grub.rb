@@ -36,7 +36,7 @@ grub = File.new('/mnt/gentoo/grub.sh', 'w')
 grub.puts('#!/bin/bash')
 grub.puts('')
 grub.puts('grep -v rootfs /proc/mounts > /etc/mtab')
-grub.puts("grub-install -no-floppy /dev/#{CONFIG['setup']['harddrive']['harddrive']}")
+grub.puts("grub-install --no-floppy /dev/#{CONFIG['setup']['harddrive']['harddrive']}")
 
 grub.close
 
