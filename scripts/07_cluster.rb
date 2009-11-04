@@ -20,7 +20,7 @@ puts 'Configuring TORQUE'
 `chroot /mnt/gentoo emerge --config torque`
 `chroot /mnt/gentoo rc-update add pbs_mom default`
 
-pbs_config = File.open('/var/spool/torque/mom_priv/config', 'w')
+pbs_config = File.open('/mnt/gentoo/var/spool/torque/mom_priv/config', 'w')
 
 pbs_config.puts("$pbsserver #{CONFIG['cluster']['torque_server']}")
 pbs_config.puts("$logevent 255")
